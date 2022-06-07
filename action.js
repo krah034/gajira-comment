@@ -17,6 +17,11 @@ module.exports = class {
     const issueId = this.argv.issue || this.config.issue || null
     const { comment } = this.argv
 
+    if ( !issueId ) {
+        console.log(`No issue id found. Skipping...`)
+        return {}
+    }
+
     console.log(`Adding comment to ${issueId}: \n${comment}`)
     await this.Jira.addComment(issueId, { body: comment })
 
